@@ -2,6 +2,7 @@ name: Test Build
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build:
@@ -82,7 +83,6 @@ jobs:
         export TZ=Asia/Jakarta
         export BUILD_USERNAME=anggit86
         export BUILD_HOSTNAME=nfsproject
-        breakfast grandppltedx
         mka org.cyanogenmod.platform-res
       working-directory: ${{ steps.pwd.outputs.LineageOS-folder }}
       
