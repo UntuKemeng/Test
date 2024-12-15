@@ -80,7 +80,9 @@ jobs:
         source build/envsetup.sh
         lunch lineage_grandppltedx-userdebug
         export TZ=Asia/Jakarta
-        export BUILD_USERNAME=grandpplte
+        export BUILD_USERNAME=anggit86
         export BUILD_HOSTNAME=nfsproject
-        brunch grandppltedx
+        breakfast grandppltedx
+        mka org.cyanogenmod.platform-res
       working-directory: ${{ steps.pwd.outputs.LineageOS-folder }}
+      
