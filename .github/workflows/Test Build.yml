@@ -22,7 +22,7 @@ jobs:
     - name: Prepare the environment
       run: |
         sudo apt -y update && sudo apt -y upgrade
-        sudo apt -y install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libncurses* libsdl1.2-dev libssl-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+        sudo apt -y install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libncurses5 libsdl1.2-dev libssl-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
 
     - name: Install OpenJDK
       uses: actions/setup-java@v4
@@ -41,7 +41,6 @@ jobs:
 
     - name: Install repo
       run: |
-        sudo su
         mkdir ~/bin
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
@@ -49,20 +48,18 @@ jobs:
 
     - name: Initialize repo
       run: |
-        sudo su
         mkdir LineageOS
         cd LineageOS
         echo "LineageOS-folder=$(pwd)" >> $GITHUB_OUTPUT
         git config --global user.name "AnGgIt86"
         git config --global user.email "jarbull86@gmail.com"
-        repo init --depth=1 --no-repo-verify -u https://github.com/LineageOS/android -b cm-14.1 -g default,-mips,-darwin,-notdefault
+        repo init -u https://github.com/LineageOS/android -b cm-14.1
       id: pwd
 
     - name: Repo Sync
       run: |
-        sudo su
         git clone https://github.com/UWU-TEAM/local_manifests_grandppltedx --depth 1 -b main .repo/local_manifests
-        repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+        repo sync -j$(nproc --all)
       working-directory: LineageOS
 
     - name: Set Swap Space
@@ -72,7 +69,6 @@ jobs:
 
     - name: Building
       run: |
-       sudo su
         export ALLOW_MISSING_DEPENDENCIES=true
         export LANG=C.UTF-8
         export LC_ALL=C
