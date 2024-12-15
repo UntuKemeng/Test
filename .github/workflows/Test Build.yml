@@ -78,5 +78,5 @@ jobs:
         export TZ=Asia/Jakarta
         export BUILD_USERNAME=grandpplte
         export BUILD_HOSTNAME=nfsproject
-        brunch grandppltedx
+        mka bacon
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
