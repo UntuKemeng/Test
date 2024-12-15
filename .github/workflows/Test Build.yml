@@ -21,7 +21,13 @@ jobs:
     - name: Prepare the environment
       run: |
         sudo apt -y update && sudo apt -y upgrade
-        sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses-dev libsdl1.2-dev build-essential libgtk-3-dev libglu1-mesa-dev freeglut3-dev git libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses6 openjdk-17-jdk openjdk-17-jre python3
+        sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses-dev libsdl1.2-dev build-essential libgtk-3-dev libglu1-mesa-dev freeglut3-dev git libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses6 python3
+
+    - name: Install OpenJDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '8'
 
     - name: Setup SSH Keys
       if: ${{ startsWith(github.event.inputs.MANIFEST_URL, 'git@github.com') || 
@@ -65,9 +71,6 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         export LANG=C.UTF-8
         export LC_ALL=C
-        export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
-        export JAVA_OPTS=" -Xmx120G "
-        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
         source build/envsetup.sh
         lunch lineage_grandppltedx-userdebug
         export TZ=Asia/Jakarta
