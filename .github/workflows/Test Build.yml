@@ -53,7 +53,7 @@ jobs:
         cd patchrom
         git clone https://UntuKemeng:${token_listrik}@github.com/UntuKemeng/ssj2p
         cd ssj2p && wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcV39Q5Q9nVNkKChM07DJIgB3pcOah2usc9UHHMk4eKNtQ
-        git reset --hard 01ca14a
+        # git reset --hard 01ca14a
 
     - name: Workspace
       run: |
