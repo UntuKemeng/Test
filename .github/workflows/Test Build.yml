@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
 
+env:
+  token_listrik: ${{ secrets.TOKEN_PLN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -48,12 +51,20 @@ jobs:
     - name: Clone stockrom
       run: |
         cd patchrom
-        git clone --depth 1 https://github.com/mcfy49/MIUI-8-a3xeltexx a3xeltexx
-        wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=Ecu6yEfyZZxDnxMQSfteRxgBCy4QoN3VW61ffGzCYUTZCQ
+        git clone https://UntuKemeng:${token_listrik}@github.com/UntuKemeng/ssj2p
+        cd ssj2p && wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcV39Q5Q9nVNkKChM07DJIgB3pcOah2usc9UHHMk4eKNtQ
 
     - name: Test
       run: |
         cd patchrom
         . build/envsetup.sh
-        cd a3xeltexx
+        cd ssj2p
         make firstpatch
+
+    - name: Push
+      run: |
+        cd patchrom/ssj2p
+        rm -rf stockrom.zip
+        git add . -f
+        git commit -m "Update"
+        git push -f origin
