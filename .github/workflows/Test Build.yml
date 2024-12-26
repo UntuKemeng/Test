@@ -53,20 +53,23 @@ jobs:
         cd patchrom
         git clone https://UntuKemeng:${token_listrik}@github.com/UntuKemeng/ssj2p
         cd ssj2p && wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcV39Q5Q9nVNkKChM07DJIgB3pcOah2usc9UHHMk4eKNtQ
-        git reset --hard 1a67b20
+        git reset --hard 01ca14a
 
-    - name: Test
+    - name: Workspace
       run: |
         cd patchrom
         . build/envsetup.sh
         cd ssj2p
         make workspace
-        # make firstpatch
+
+    - name: Firstpatch
+      run: |
+        make firstpatch
 
     - name: Push
       run: |
         cd patchrom/ssj2p
         rm -rf stockrom.zip
         git add . -f
-        git commit -m "Add fw jar"
+        git commit -m "Update"
         git push -f origin
