@@ -59,6 +59,7 @@ jobs:
         cd patchrom
         . build/envsetup.sh
         cd ssj2p
+        make workspace
         make firstpatch
 
     - name: Push
