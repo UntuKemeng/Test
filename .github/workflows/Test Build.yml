@@ -65,7 +65,7 @@ jobs:
         sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*/*.smali
         sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*/*/*.smali
         git add . -f
-        git commit -m "Remove all line object
+        git commit -m "Remove all line object"
 
     - name: Anu
       run: |
