@@ -52,7 +52,7 @@ jobs:
       run: |
         cd patchrom
         git clone https://UntuKemeng:${token_listrik}@github.com/UntuKemeng/ssj2p
-        cd ssj2p && wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcV39Q5Q9nVNkKChM07DJIgB3pcOah2usc9UHHMk4eKNtQ
+        cd ssj2p
         git reset --hard 01ca14a
         sed -i "/    .line /d" */*/*/*.smali
         sed -i "/    .line /d" */*/*/*/*.smali
@@ -66,6 +66,7 @@ jobs:
         sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*/*/*.smali
         git add . -f
         git commit -m "Remove all line object"
+        wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcV39Q5Q9nVNkKChM07DJIgB3pcOah2usc9UHHMk4eKNtQ
 
     - name: Anu
       run: |
