@@ -51,35 +51,36 @@ jobs:
     - name: Clone stockrom
       run: |
         cd patchrom
-        git clone https://UntuKemeng:${token_listrik}@github.com/UntuKemeng/ssj2p
-        cd ssj2p
-        git reset --hard 01ca14a
-        sed -i "/    .line /d" */*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*/*.smali
-        sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*/*/*.smali
-        git add . -f
-        git commit -m "Remove all line object"
+        # git clone https://UntuKemeng:${token_listrik}@github.com/UntuKemeng/ssj2p
+        # cd ssj2p
+        # git reset --hard 01ca14a
+        # sed -i "/    .line /d" */*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*/*.smali
+        # sed -i "/    .line /d" */*/*/*/*/*/*/*/*/*/*/*/*.smali
+        # git add . -f
+        # git commit -m "Remove all line object"
+        mkdir -p ssj2p && cd ssj2p
         wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcV39Q5Q9nVNkKChM07DJIgB3pcOah2usc9UHHMk4eKNtQ
 
     - name: Anu
       run: |
-        cd patchrom
-        . build/envsetup.sh
-        cd ssj2p
+        cd patchrom && cd ssj2p
         # make workspace
-        make firstpatch
+        # make firstpatch
+        . ../build/envsetup.sh
+        ../tools/releasetools/ota_from_target_files stockrom.zip stockrom
 
-    - name: Push
-      run: |
-        cd patchrom/ssj2p
-        rm -rf stockrom.zip
-        git add . -f
-        git commit -m "Update"
-        git push -f origin
+    # - name: Push
+      # run: |
+        # cd patchrom/ssj2p
+        # rm -rf stockrom.zip
+        # git add . -f
+        # git commit -m "Update"
+        # git push -f origin
