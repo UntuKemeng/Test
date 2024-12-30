@@ -67,7 +67,7 @@ jobs:
         # git add . -f
         # git commit -m "Remove all line object"
         mkdir -p ssj2p && cd ssj2p
-        wget -O stockrom.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcRKSn8ZnoJKv8S22iRUzuEBmpeIcpHots3scU2pIvRp5A
+        wget -O miui_HMNote4Global_9.3.28_26cb54dab1_6.0.zip https://ylsd7-my.sharepoint.com/personal/pikachu_ylsd7_onmicrosoft_com/_layouts/15/download.aspx?share=EcRKSn8ZnoJKv8S22iRUzuEBmpeIcpHots3scU2pIvRp5A
 
     - name: Anu
       run: |
@@ -76,7 +76,7 @@ jobs:
         cd ssj2p
         # make workspace
         # make firstpatch
-        ../tools/releasetools/ota_from_target_files stockrom.zip stockrom
+        ../tools/releasetools/ota_from_target_files miui_HMNote4Global_9.3.28_26cb54dab1_6.0.zip stockrom
 
     # - name: Push
       # run: |
