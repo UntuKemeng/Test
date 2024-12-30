@@ -71,10 +71,11 @@ jobs:
 
     - name: Anu
       run: |
-        cd patchrom && cd ssj2p
+        cd patchrom
+        . build/envsetup.sh
+        cd ssj2p
         # make workspace
         # make firstpatch
-        . ../build/envsetup.sh
         ../tools/releasetools/ota_from_target_files stockrom.zip stockrom
 
     # - name: Push
